@@ -1,9 +1,9 @@
 DROP
-DATABASE join_test_db;
+    DATABASE join_test_db;
 CREATE
-DATABASE join_test_db;
+    DATABASE join_test_db;
 USE
-join_test_db;
+    join_test_db;
 
 CREATE TABLE roles
 (
@@ -41,10 +41,11 @@ VALUES ('bob', 'bob@example.com', 1),
 
 
 
-
-SELECT users.name, roles.name
+SELECT roles.name, COUNT(*)
 FROM users
-         JOIN roles ON users.role_id = roles.id;
+         JOIN roles ON users.role_id = roles.id
+GROUP BY roles.name
+ORDER BY COUNT(*);
 
 
 
@@ -55,4 +56,6 @@ FROM users AS u
 SELECT u.name AS user_name, r.name AS role_name
 FROM users AS u
          RIGHT JOIN roles AS r ON u.role_id = r.id;
+
+
 
